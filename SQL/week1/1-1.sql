@@ -2,4 +2,4 @@
 # 일반적으로 select문에서는 중복여부에 상관없이 모든 자료를 요청하므로, distinct를 사용하여 고유한 날짜만 출력한다.
 
 SELECT DISTINCT DATE(rental_date) 
-FROM rental
+FROM rental 
