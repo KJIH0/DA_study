@@ -97,10 +97,12 @@ GROUP BY의 작업을 크게 "그룹핑" + "정렬"로 나누어서 본다면, D
 쉽게 생각해서, DISTICNT는 그룹핑만, GROUP BY는 그룹핑 + 정렬의 과정입니다. 
 때문에 연산 속도는 DISTINCT가 더 빠르며, "정렬"이 필요하지 않다면 DISTINCT를 사용하는 것이 성능상 더 빠르다고 볼 수 있습니다.
 
-
 <br/>
+
 ### + 참고 
+
 1. DISTINCT로만 가능한 기능
+
 ```sql
 SELECT COUNT(DISTINCT fd1) FROM tab;
 ```
@@ -113,4 +115,4 @@ SELECT fd1, MIN(fd2), MAX(fd2) FROM tab
 GROUP BY fd1;
 ```
 
-  => 이렇게 집합함수(Aggregation)가 필요한 경우에는 GROUP BY를 사용해야 한다.
+  => 이렇게 집합함수(Aggregation)가 필요한 경우에는 GROUP BY를 사용해야 합니다.
