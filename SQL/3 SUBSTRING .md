@@ -19,13 +19,19 @@ SUBSTRING(string FROM start FOR length)
 
 ### 1-2. 예시
 
-1. 열의 텍스트에서 부분 문자열 추출(두번째 위치에서 시작하여 다섯자 추출)
+1. 부분 문자열 추출(두번째 위치에서 시작하여 다섯자 추출)
 ```sql
 SELECT SUBSTRING(CustomerName, 2, 5) AS ExtractString
 FROM Customers
 ```
 
-2. 문자열에서 부분 문자열 추출(끝에서 시작하여 위치 -5에서 다섯자 추출):
+2. 부분 문자열 추출(끝에서 시작하여 위치 -5에서 다섯자 추출):
 ```sql
 SELECT SUBSTRING("SQL Tutorial", -5, 5) AS ExtractString;
+```
+
+3. address 테이블을 이용하여, 우편번호(postal_code) 값이 두번째글자가 1인 우편번호의  address_id, address, district ,postal_code  컬럼 확인.
+```sql
+SELECT address_id, address, district ,postal_code FROM address 
+WHERE substring(postal_code,2,1) ='1'
 ```
