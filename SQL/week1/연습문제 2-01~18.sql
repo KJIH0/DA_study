@@ -73,4 +73,37 @@ WHERE postal_code = '' OR postal_code = '35200' OR postal_code = '178860'
 --[두번째 풀이 => 더 깔끔]
 select *
   from address
- where postal_code in ('','35200','17886');
+ where postal_code in ('','35200','17886')
+ 
+ --문제13번) address 테이블을 이용하여,  address 의 상세주소(=address2) 값이  존재하지 않는 모든 데이터를 확인하여 주세요.
+
+SELECT * FROM address
+WHERE address2 IS NULL
+
+--문제14번) staff 테이블을 이용하여, staff 의  picture  사진의 값이 있는  직원의  id, 이름,성을 확인해주세요. 단 이름과 성을  하나의 컬럼으로 이름, 성의형태로  새로운 컬럼 name 컬럼으로 도출해주세요.
+-- => 확인 필요
+
+SELECT staff_id, first_name || ' ' || last_name AS name
+FROM staff 
+WHERE picture IS NOT NULL 
+
+--문제15번) rental 테이블을 이용하여,  대여는했으나 아직 반납 기록이 없는 대여건의 모든 정보를 확인해주세요.
+
+SELECT * FROM rental 
+WHERE return_date IS NULL 
+
+--문제16번) address 테이블을 이용하여, postal_code 값이  빈 값(NULL) 이거나 35200, 17886 에 해당하는 address 에 모든 정보를 확인해주세요.
+
+SELECT * FROM address 
+WHERE postal_code IS NULL 
+OR postal_code IN ('35200', '17886')
+
+--문제17번) 고객의 성에 John 이라는 단어가 들어가는, 고객의 이름과 성을 모두 찾아주세요.
+
+SELECT first_name, last_name FROM customer 
+WHERE last_name LIKE '%John%'
+
+--문제18번) 주소 테이블에서, address2 값이 null 값인 row 전체를 확인해볼까요?
+
+SELECT * FROM address 
+WHERE address2  IS NULL 
