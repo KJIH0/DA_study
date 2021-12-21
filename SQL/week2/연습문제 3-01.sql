@@ -13,7 +13,7 @@ SELECT  c.customer_id, c.first_name, c.last_name, c.email,
 	FROM customer c
 INNER JOIN address a
 	ON c.customer_id = a.address_id 
- INNER JOIN city ci
+INNER JOIN city ci
     ON a.city_id = ci.city_id
 
 -- 문제3번) Lima City에 사는 고객의 이름과, 성, 이메일, phonenumber에 대해서 알려주세요.
@@ -22,7 +22,7 @@ SELECT c.first_name, c.last_name, c.email, a.phone
   FROM customer c
 INNER JOIN  address a
  	ON c.customer_id = a.address_id
- WHERE  a.city_id 
+WHERE  a.city_id 
  	IN (SELECT city_id FROM city WHERE city = 'Lima')
 
 -- 문제4번) rental 정보에 추가로, 고객의 이름과, 직원의 이름을 함께 보여주세요. 고객의 이름, 직원 이름은 이름과 성을 fullname 컬럼으로만들어서 직원이름/고객이름 2개의 컬럼으로 확인해주세요.
