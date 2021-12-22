@@ -9,7 +9,7 @@ WHERE s.first_name = 'Jon'AND s.last_name = 'Stephens'
 
 -- => 문제에서 요구하지 않았지만, 위와 같은 이유로 first_name, last_name row을 합친 '고객이름', '직원이름' row를 각각 생성
 SELECT 	p.payment_id , c.first_name || ' ' || c.last_name as 고객이름, 
-		p.rental_id, p.amount, s.first_name || ' ' || s.last_name as 직원이름
+	p.rental_id, p.amount, s.first_name || ' ' || s.last_name as 직원이름
 FROM payment p 
 INNER JOIN staff s ON s.staff_id = p.staff_id 
 INNER JOIN customer c ON p.customer_id = c.customer_id 
@@ -28,11 +28,9 @@ WHERE fa.film_id IS NULL
 
 -- => 내 답안
 SELECT s.store_id, a.address, a.address2, a.district, c.city 
-  FROM store s
- INNER JOIN  address a
-    ON s.address_id = a.address_id
- INNER JOIN  city c
-	ON a.city_id = c.city_id
+	FROM store s
+ INNER JOIN  address a ON s.address_id = a.address_id
+ INNER JOIN  city c ON a.city_id = c.city_id
 
 -- => 다른 답안(결과 동일함)
 select store.store_id, address.address, address.address2, address.district, city.city
