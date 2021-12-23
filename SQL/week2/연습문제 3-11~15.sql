@@ -17,24 +17,22 @@ JOIN category c ON fc.category_id = c.category_id
 WHERE c.name = 'Music'
 	AND f.length BETWEEN 60 AND 180
 ORDER BY f.length
-
+ 
 --문제13번) actor 테이블을 이용하여,  배우의 ID, 이름, 성 컬럼에 추가로    'Angels Life' 영화에 나온 영화 배우 여부를 Y , N 으로 컬럼을 추가 표기해주세요.  해당 컬럼은 angelslife_flag로 만들어주세요.
 -- => 쉽지 않았다..⊙﹏⊙ 정답을 보고도 바로 이해되지 않았음
 -- => 지금까지 join의 종류와 차이점에 대해서 정확히 모르고 사용했는데, 이 문제에서 LEFT JOIN 과 INNER JOIN 의 차이에 대해서 공부할 수 있었다.
 -- => INNER JOIN을 사용하게 되면, 출연한 배우들이 Y, N 플래그가 모두 달려서, 총 행 수가 209행이 나오게 된다.(전체 actor 수는 200) => LEFT JOIN 사용
 
 -- 풀이 1 >>
-SELECT a.actor_id, a.first_name, a.last_name,
-	CASE WHEN a.actor_id = feat_actor.actor_id THEN 'Y' ELSE 'N' 
-	END AS angelslife_flag
-FROM actor a
-LEFT JOIN (     
-  SELECT f.film_id, f.title, fa.actor_id 
-		FROM film_actor fa
-	  JOIN film f ON fa.film_id = f.film_id
-	  WHERE f.title = 'Angels Life' 
-    )
-	AS feat_actor ON a.actor_id = feat_actor.actor_id
+SELECT a.actor_id , a.first_name, a.last_name , CASE WHEN a.actor_id IN (
+		SELECT actor_id
+		  FROM film f
+		 INNER JOIN  film_actor fa 
+			ON f.film_id  = fa.film_id
+		 WHERE f.title ='Angels Life') THEN 'Y'
+		 ELSE 'N'
+		 END AS  angelslife_flag
+  FROM actor a
 
 -- 풀이 2 >>
 SELECT a.actor_id , a.first_name, a.last_name, 
