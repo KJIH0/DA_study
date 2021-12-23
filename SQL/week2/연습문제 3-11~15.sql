@@ -34,17 +34,6 @@ SELECT a.actor_id , a.first_name, a.last_name , CASE WHEN a.actor_id IN (
 		 END AS  angelslife_flag
 	FROM actor a
 
--- 풀이 2 >>
-SELECT a.actor_id , a.first_name, a.last_name, CASE WHEN a.actor_id IN (
-			SELECT actor_id 
-				FROM film f
-			INNER JOIN film_actor fa 
-				ON  f.film_id  = fa.film_id
-			WHERE f.title ='Angels Life') THEN 'Y'
-			ELSE 'N'
-			END AS angelslife_flag
-	FROM actor a
-
 
 --문제14번) 대여일자가 2005-06-01~ 14일에 해당하는 주문 중에서 , 직원의 이름(이름 성) = 'Mike Hillyer' 이거나  고객의 이름이 (이름 성) ='Gloria Cook'  에 해당 하는 rental 의 모든 정보를 알려주세요.
 --- 추가로 직원이름과, 고객이름에 대해서도 fullname 으로 구성해서 알려주세요.
@@ -61,15 +50,14 @@ SELECT r.*, s.first_name || ' ' || s.last_name AS staff_fullname,c.first_name ||
 
 -- 풀이 2 >>
 SELECT r.*
-  FROM rental r
-  INNER JOIN  customer c ON r.customer_id = c.customer_id
-  INNER JOIN  staff s ON r.staff_id = s.staff_id 
-  WHERE date(r.rental_date) BETWEEN '2005-06-01' AND '2005-06-14'
-    AND (
-   		s.first_name || ' ' || s.last_name = 'Mike Hillyer'
-   		OR 
-   		c.first_name || ' ' || c.last_name = 'Gloria Cook'
-   		)
+	FROM rental r
+	INNER JOIN  customer c ON r.customer_id = c.customer_id
+	INNER JOIN  staff s ON r.staff_id = s.staff_id 
+	WHERE date(r.rental_date) BETWEEN '2005-06-01' AND '2005-06-14'
+	AND (s.first_name || ' ' || s.last_name = 'Mike Hillyer'
+		OR 
+		c.first_name || ' ' || c.last_name = 'Gloria Cook'
+		)
 
 
 --문제15번) 대여일자가 2005-06-01~ 14일에 해당하는 주문 중에서 , 직원의 이름(이름 성) = 'Mike Hillyer' 에 해당 하는 직원에게  구매하지 않은  rental 의 모든 정보를 알려주세요.
