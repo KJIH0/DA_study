@@ -35,15 +35,15 @@ SELECT a.actor_id , a.first_name, a.last_name , CASE WHEN a.actor_id IN (
   FROM actor a
 
 -- 풀이 2 >>
-SELECT a.actor_id , a.first_name, a.last_name, 
-	CASE WHEN a.actor_id 
-	IN (SELECT actor_id FROM film f
-      INNER JOIN film_actor fa ON  f.film_id  = fa.film_id
-      WHERE f.title ='Angels Life'
-      ) 
-	THEN 'Y'ELSE 'N'
-	END AS angelslife_flag
-FROM actor a
+SELECT a.actor_id , a.first_name, a.last_name, CASE WHEN a.actor_id IN (
+			SELECT actor_id 
+				FROM film f
+			INNER JOIN film_actor fa 
+				ON  f.film_id  = fa.film_id
+			WHERE f.title ='Angels Life') THEN 'Y'
+			ELSE 'N'
+			END AS angelslife_flag
+	FROM actor a
 
 
 --문제14번) 대여일자가 2005-06-01~ 14일에 해당하는 주문 중에서 , 직원의 이름(이름 성) = 'Mike Hillyer' 이거나  고객의 이름이 (이름 성) ='Gloria Cook'  에 해당 하는 rental 의 모든 정보를 알려주세요.
@@ -83,6 +83,6 @@ SELECT r.*
 	  AND (s.first_name || ' ' || s.last_name != 'Mike Hillyer')
 
 
--- 어려워졌지만 재미는 있다...
+
 --- https://velog.io/@fe26ming?tag=sql => 잘 안풀렸던 문제는 구글링하여 2~3개 정도의 코드를 비교해봤는데 이 분 코드가 가장 깔끔했다.
 
