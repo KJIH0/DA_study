@@ -32,7 +32,7 @@ SELECT a.actor_id , a.first_name, a.last_name , CASE WHEN a.actor_id IN (
 		 WHERE f.title ='Angels Life') THEN 'Y'
 		 ELSE 'N'
 		 END AS  angelslife_flag
-  FROM actor a
+	FROM actor a
 
 -- 풀이 2 >>
 SELECT a.actor_id , a.first_name, a.last_name, CASE WHEN a.actor_id IN (
@@ -51,14 +51,13 @@ SELECT a.actor_id , a.first_name, a.last_name, CASE WHEN a.actor_id IN (
 -- => 대여일자는 동일하게 적용되지만, 직원 이름과 고객 이름은 둘 중 하나만 충족하면 된다. -> and(~or) where절 사용
 
 -- 풀이 1 >>
-SELECT r.*, s.first_name || ' ' || s.last_name AS staff_fullname,
-	c.first_name || ' ' || c.last_name AS cust_fullname
-FROM rental r
+SELECT r.*, s.first_name || ' ' || s.last_name AS staff_fullname,c.first_name || ' ' || c.last_name AS cust_fullname
+	FROM rental r
 	JOIN staff s ON r.staff_id = s.staff_id
 	JOIN customer c ON r.customer_id = c.customer_id
-WHERE date(rental_date) BETWEEN '2005-06-01' AND '2005-06-14'
-	AND (s.first_name || ' ' || s.last_name = 'Mike Hillyer'
-	  OR c.first_name || ' ' || c.last_name = 'Gloria Cook')
+	WHERE date(rental_date) BETWEEN '2005-06-01' AND '2005-06-14'
+		AND (s.first_name || ' ' || s.last_name = 'Mike Hillyer'
+		OR c.first_name || ' ' || c.last_name = 'Gloria Cook')
 
 -- 풀이 2 >>
 SELECT r.*
