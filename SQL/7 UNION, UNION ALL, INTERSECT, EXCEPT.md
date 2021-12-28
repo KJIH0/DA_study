@@ -37,7 +37,7 @@ SELECT column, column2, ... columnn
 ```
 <br/>
 
-## UNION, UNION ALL 사용 예시
+### UNION, UNION ALL 사용 예시
 
 - 영화 배우가,  영화 180분 이상의 길이 의 영화에 출연하거나, 영화의 rating 이 R 인 등급에 해당하는 영화에 출연한  영화 배우에 대해서, 영화 배우 ID 와 (180분이상 / R등급영화)에 대한 Flag 컬럼을 알려주세요.
   - film_actor 테이블와 film 테이블을 이용하세요.
