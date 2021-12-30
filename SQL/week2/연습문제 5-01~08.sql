@@ -103,7 +103,7 @@ JOIN staff s ON c.store_id = s.store_id
 WHERE c.first_name = s.first_name 
 
 --> 정답 => 두 개 테이블의 교집합을 추출하는 연산자 INTERSECT 를 사용.
---> 이름과 성이 동일한 사람이 추출되는 쿼리문 같은데,
+--> 이름과 성이 동일한 사람이 추출되는 쿼리문 
 SELECT first_name, last_name 
   FROM customer c 
 INTERSECT 
@@ -118,10 +118,20 @@ SELECT first_name, last_name
 
 
 
-
 --문제8번) 국가(country)별 도시(city)별 매출액, 국가(country)매출액 소계 그리고 전체 매출액을 구하세요. (union all)
 
+SELECT c3.country,c2.city, sum(p.amount)
+	FROM payment p 
+JOIN customer c ON p.customer_id = p.customer_id 
+JOIN address a ON c.address_id = a.address_id 
+JOIN city c2 ON c2.city_id = a.city_id 
+JOIN country c3 ON c3.country_id = c2.country_id 
+GROUP BY ROLLUP(c3.country, c2.city)
 
 
 
---- UNION, UNION ALL
+
+
+-- UNION, UNION ALL, ROLLUP
+-- 7,8번 정답 확인해야함
+
