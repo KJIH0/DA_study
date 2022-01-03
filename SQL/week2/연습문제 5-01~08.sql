@@ -116,10 +116,10 @@ SELECT first_name, last_name
 --> 반납이 되지 않은 영화는 대여일은 있으나 반납일은 없는 영화 (rental테이블 사용)
 
 
-
+ 
 
 --문제8번) 국가(country)별 도시(city)별 매출액, 국가(country)매출액 소계 그리고 전체 매출액을 구하세요. (union all)
-
+ 
 SELECT c3.country,c2.city, sum(p.amount)
 	FROM payment p 
 JOIN customer c ON p.customer_id = p.customer_id 
