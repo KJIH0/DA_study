@@ -32,7 +32,7 @@ GROUPING SETS((deptno, job), deptno, job);
 >  ![image](https://user-images.githubusercontent.com/83413923/148670464-7af6c163-0afb-4860-883f-bece2fc89885.png)
 
 
-<BR/>
+<BR/><BR/>
 
 # 2. ROLLUP
 
@@ -53,8 +53,9 @@ GROUP BY
   ROLLUP(C1, C2, C3);  -- 소계를 생성할 컬럼을 지정한다.
                        -- 컬럼 지정 순서에 따라 결과값이 달라질 수 있다.
 ```
+<BR/>
 
-### 2-2 예시
+### 2-2. 예시
 
 - 부서별, 직업별 뿐만아니라 전체 급여의 합과 부서별 급여의 합을 함께 출력
 ```SQL
@@ -77,8 +78,9 @@ GROUP BY ROLLUP((DEPTNO, JOB));
 > OUTPUT <BR/>
 > ![image](https://user-images.githubusercontent.com/83413923/148672111-50706448-583c-4c15-a260-17a1846f3af0.png)
 
+<BR/>
 
-### 2-3 원리 
+### 2-3. 원리 
 ![image](https://user-images.githubusercontent.com/83413923/148672126-0ccd9524-fc98-48d1-9cd7-44f749dbf971.png)
 1. ROLLUP의 인자로 들어온 칼럼을 오른쪽부터 하나씩 빼면서 GROUP을 만듭니다.
 2. "()"의 의미는 GROUP이 없는 즉, 전체에 대한 결과를 출력한다는 뜻 입니다. EX(SUM 함수 사용하면 전체 SUM 구한다는 뜻)
@@ -86,7 +88,8 @@ GROUP BY ROLLUP((DEPTNO, JOB));
 4. ROLLUP 이전에 일반 컬럼과 GROUP BY 한다면, 일반 컬럼은 끝까지 남습니다.
 
 
-<BR/>
+<BR/><BR/>
+
 
 
 > 참조 :  https://myjamong.tistory.com/191
