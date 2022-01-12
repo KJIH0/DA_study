@@ -36,3 +36,23 @@ SELECT COALESCE (store_id::TEXT , 'Total') AS "store_id", active, Count(*)
 LEFT JOIN store s USING (store_id)
 GROUP BY ROLLUP (store_id), (active)
 ORDER BY store_id
+
+1	0	8
+1	1	318
+2	0	7
+2	1	266
+Total	0	15
+Total	1	584
+
+
+-- GROUP BY ROLLUP (store_id), (active) 과
+-- GROUP BY ROLLUP (store_id, active)의 차이가 뭐지...?
+-- 후자로 풀었을땐 null에 택스트 대치가 적용되지 않는다ㅜㅜ
+
+1		326
+1	0	8
+1	1	318
+2	0	7
+2	1	266
+2		273
+Total		599
