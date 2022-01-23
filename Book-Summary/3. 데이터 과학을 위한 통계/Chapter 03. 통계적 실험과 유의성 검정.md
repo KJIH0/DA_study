@@ -1,4 +1,4 @@
-# CHAPTER 3 통계적 실험과 유의성 검정
+# CHAPTER 03. 통계적 실험과 유의성 검정
 
 <details>
 <summary> 목차 😊</summary>
